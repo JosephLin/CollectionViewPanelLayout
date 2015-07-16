@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="ufC-wZ-h7g">
+            <objects>
+                <viewController id="vXZ-lx-hvc" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
+                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="4Ju-Wp-r13">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <collectionViewLayout key="collectionViewLayout" id="LHh-8T-Y5N" customClass="CollectionViewPanelLayout"/>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ButtonCell" id="QLD-tU-ti3" customClass="ButtonCell">
+                                        <rect key="frame" x="0.0" y="0.0" width="228" height="81"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="228" height="81"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OAg-tH-9sN">
+                                                    <rect key="frame" x="0.0" y="0.0" width="228" height="81"/>
+                                                    <color key="backgroundColor" red="0.99607843139999996" green="0.24313725489999999" blue="0.094117647060000004" alpha="0.17000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <state key="normal" title="Button">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="buttonTapped:" destination="QLD-tU-ti3" eventType="touchUpInside" id="mnG-mc-h2P"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="OAg-tH-9sN" firstAttribute="leading" secondItem="QLD-tU-ti3" secondAttribute="leading" id="1Ud-dC-bNH"/>
+                                            <constraint firstItem="OAg-tH-9sN" firstAttribute="top" secondItem="QLD-tU-ti3" secondAttribute="top" id="Fc0-0e-OBc"/>
+                                            <constraint firstAttribute="trailing" secondItem="OAg-tH-9sN" secondAttribute="trailing" id="dHT-73-UV8"/>
+                                            <constraint firstAttribute="bottom" secondItem="OAg-tH-9sN" secondAttribute="bottom" id="rN4-At-D12"/>
+                                        </constraints>
+                                        <size key="customSize" width="228" height="81"/>
+                                        <connections>
+                                            <outlet property="button" destination="OAg-tH-9sN" id="uPC-sZ-IYB"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="vXZ-lx-hvc" id="Hkv-ap-JNd"/>
+                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="QXv-95-jsJ"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="4Ju-Wp-r13" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="BT3-6p-efL"/>
+                            <constraint firstAttribute="trailing" secondItem="4Ju-Wp-r13" secondAttribute="trailing" id="U95-bd-1ci"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="4Ju-Wp-r13" secondAttribute="bottom" id="lCa-WA-RZa"/>
+                            <constraint firstItem="4Ju-Wp-r13" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="xOi-TG-eb6"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="4Ju-Wp-r13" id="CuG-iP-T4r"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="129" y="582"/>
+        </scene>
+    </scenes>
+</document>
