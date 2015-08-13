@@ -20,6 +20,7 @@
 @property (nonatomic) CGFloat sectionSpacing;
 @property (nonatomic) CGFloat itemSpacing;
 
+@property (nonatomic) NSNumber *sectionHeight;
 
 - (NSInteger)numberOfPanels;
 - (NSInteger)panelForSection:(NSInteger)section;

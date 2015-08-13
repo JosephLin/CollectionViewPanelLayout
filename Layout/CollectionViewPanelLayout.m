@@ -56,7 +56,7 @@ static NSString * const WICollectionElementKindPanelSeparator = @"WICollectionEl
 #pragma mark - Custom Layout
 
 @interface CollectionViewPanelLayout ()
-@property (nonatomic) NSNumber *sectionHeight;
+@property (nonatomic) NSNumber *cachedSectionHeight;
 @property (nonatomic) NSMutableDictionary *panelFrames;
 @end
 
@@ -151,10 +151,10 @@ static NSString * const WICollectionElementKindPanelSeparator = @"WICollectionEl
     CGFloat width = CGRectGetWidth(panelFrame) - self.sectionInsets.left - self.sectionInsets.right - self.itemSpacing * (numberOfItems - 1);
     width /= numberOfItems;
     CGFloat x = self.sectionInsets.left + indexPath.item * (width + self.itemSpacing);
-    CGFloat height = self.sectionHeight.doubleValue;
+    CGFloat height = self.cachedSectionHeight.doubleValue;
     
     NSInteger sectionWithinPanel = [self sectionWithinPanelForSection:indexPath.section];
-    CGFloat y = self.sectionInsets.top + sectionWithinPanel * (self.sectionHeight.doubleValue + self.sectionSpacing);
+    CGFloat y = self.sectionInsets.top + sectionWithinPanel * (self.cachedSectionHeight.doubleValue + self.sectionSpacing);
 
     CGRect rect = CGRectMake(x + panelFrame.origin.x, y + panelFrame.origin.y, width, height);
     
@@ -206,7 +206,7 @@ static NSString * const WICollectionElementKindPanelSeparator = @"WICollectionEl
 
 - (void)invalidateCache
 {
-    self.sectionHeight = nil;
+    self.cachedSectionHeight = nil;
     [self.panelFrames removeAllObjects];
 }
 
@@ -230,13 +230,13 @@ static NSString * const WICollectionElementKindPanelSeparator = @"WICollectionEl
         }
         
         NSInteger numberOfSections = obj.integerValue;
-        CGFloat panelHeight = self.sectionInsets.top + self.sectionInsets.bottom + self.sectionSpacing * (numberOfSections - 1) + self.sectionHeight.doubleValue * numberOfSections;
+        CGFloat panelHeight = self.sectionInsets.top + self.sectionInsets.bottom + self.sectionSpacing * (numberOfSections - 1) + self.cachedSectionHeight.doubleValue * numberOfSections;
         y += panelHeight;
         y += self.panelSpacing;
     }];
     
     NSInteger numberOfSections = [self numberOfSectionsInPanel:panelIndex];
-    CGFloat height = self.sectionInsets.top + self.sectionInsets.bottom + self.sectionSpacing * (numberOfSections - 1) + self.sectionHeight.doubleValue * numberOfSections;
+    CGFloat height = self.sectionInsets.top + self.sectionInsets.bottom + self.sectionSpacing * (numberOfSections - 1) + self.cachedSectionHeight.doubleValue * numberOfSections;
     
     CGRect rect = CGRectMake(x, y, width, height);
     value = [NSValue valueWithCGRect:rect];
@@ -306,9 +306,9 @@ static NSString * const WICollectionElementKindPanelSeparator = @"WICollectionEl
     return section;
 }
 
-- (NSNumber *)sectionHeight
+- (NSNumber *)cachedSectionHeight
 {
-    if (!_sectionHeight) {
+    if (!_cachedSectionHeight) {
         
         NSInteger numberOfPanels = self.numberOfPanels;
         NSInteger numberOfSections = [self.collectionView numberOfSections];
@@ -334,11 +334,11 @@ static NSString * const WICollectionElementKindPanelSeparator = @"WICollectionEl
         - (self.sectionInsets.top + self.sectionInsets.bottom) * numberOfPanels
         - self.sectionSpacing * numberOfSectionSpacing;
         sectionHeight = sectionHeight / numberOfSections;
-
-        _sectionHeight = @(sectionHeight);
+        
+        _cachedSectionHeight = @(sectionHeight);
         NSLog(@"sectionHeight = %f", sectionHeight);
     }
-    return _sectionHeight;
+    return _cachedSectionHeight;
 }
 
 
